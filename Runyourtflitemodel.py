@@ -6,7 +6,7 @@ Created on Tue Dec  8 14:42:43 2020
 @author: base
 """
 
-import tensorflow as tf
+#import tensorflow as tf # Will throw an error on ARM (pollux) as tensroflow is not installed
 import tflite_runtime.interpreter as tflite
 from pathlib import Path
 import numpy as np
