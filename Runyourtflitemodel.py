@@ -7,18 +7,20 @@ Created on Tue Dec  8 14:42:43 2020
 """
 
 import tensorflow as tf
+import tflite_runtime.interpreter as tflite
 from pathlib import Path
 import numpy as np
 import time
 
-modelpath= Path.cwd() / 'mmodel.tflite'
+modelpath= Path.cwd() / 'model.tflite'
 
 '''
 --------------------------------------------------------
 # Load Model
 '''
 try: 
-    interpreter = tf.lite.Interpreter(str(modelpath))   # input()    # To let the user see the error message
+    #interpreter = tf.lite.Interpreter(str(modelpath)) # Auf x86 über TensorFlow
+    interpreter = tflite.Interpreter(str(modelpath)) # Auf ARM über tflite_runtime
 except ValueError as e:
     print("Error: Modelfile could not be found. Check if you are in the correct workdirectory. Errormessage:  " + str(e))
     import sys
@@ -34,7 +36,7 @@ output_details = interpreter.get_output_details()
 
 Do some preprocessing
 '''
-samples = preprocess_input(files) # Do your preprosession here
+samples = preprocess_input(your_data) # Do your preprosession here
 
 '''
 --------------------------------------------------------
