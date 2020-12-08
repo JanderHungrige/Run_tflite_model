@@ -43,8 +43,8 @@ samples = preprocess_input(your_data) # Do your preprosession here
 
 Run inference
 '''
-Zeit=time()
+Zeit=time.time()
 interpreter.set_tensor(input_details[0]['index'], samples)
 interpreter.invoke()
 output_of_your_model = np.ravel(interpreter.get_tensor(output_details[0]['index']))
-print ( Zeit-time() )
+print (time.time()-Zeit)
